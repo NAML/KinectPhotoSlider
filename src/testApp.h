@@ -3,6 +3,7 @@
 
 #include "ofMain.h"
 #include "ofxMtPhotoGallery.h"
+#include "ofxOpenNI.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -21,7 +22,16 @@ public:
     void gotMessage(ofMessage msg);
     void dragEvent(ofDragInfo dragInfo);
     
-    ofxMtPhotoGallery gallery;
+//    ofxMtPhotoGallery gallery;
+#if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
+	ofxHardwareDriver	hardware;
+#endif
+
+	ofxOpenNIContext	context;
+	ofxDepthGenerator	depthGenerator;
+	ofxUserGenerator	userGenerator;
+	ofxGestureGenerator wave;
+	
 };
 
 #endif
